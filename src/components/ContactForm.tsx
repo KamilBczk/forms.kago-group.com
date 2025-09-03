@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/components/ui/Button";
 import CheckBox from "@/components/ui/CheckBox";
 import Input from "./ui/Input";
 import Title from "./ui/Title";
@@ -48,7 +47,7 @@ export default function ContactForm() {
         throw new Error('Erreur lors de l\'envoi du formulaire');
       }
 
-      const result = await response.json();
+      await response.json();
       setSubmitMessage({ type: 'success', text: 'Votre message a été envoyé avec succès ! Nous vous recontacterons bientôt.' });
       reset();
     } catch (error) {

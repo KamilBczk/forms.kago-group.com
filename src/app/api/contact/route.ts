@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
     // Ajouter les métadonnées du navigateur et de la requête
     const clientIP = request.headers.get('x-forwarded-for') || 
                      request.headers.get('x-real-ip') || 
-                     request.ip || 
                      'IP non disponible';
     
     const userAgent = request.headers.get('user-agent') || 'User-Agent non disponible';
@@ -32,8 +31,8 @@ export async function POST(request: NextRequest) {
 
     // Préparer le contenu de l'email
     const selectedServices = Object.entries(validatedData.services)
-      .filter(([_, selected]) => selected)
-      .map(([service, _]) => {
+      .filter(([, selected]) => selected)
+      .map(([service]) => {
         const serviceNames: { [key: string]: string } = {
           website: 'Création de site web',
           custom: 'Développement sur mesure',
